@@ -238,6 +238,13 @@ export type DiscordAccountConfig = {
    * - "allowlist": only allow channels present in discord.guilds.*.channels
    */
   groupPolicy?: GroupPolicy;
+  /**
+   * Global default for mention-gating in all guild channels.
+   * When false, the bot responds without requiring an @mention.
+   * Can be overridden per-guild (guilds[id].requireMention) or per-channel.
+   * Default: true.
+   */
+  requireMention?: boolean;
   /** Outbound text chunk size (chars). Default: 2000. */
   textChunkLimit?: number;
   /** Chunking mode: "length" (default) splits by size; "newline" splits on every newline. */

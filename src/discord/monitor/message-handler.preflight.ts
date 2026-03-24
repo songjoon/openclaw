@@ -574,6 +574,7 @@ export async function preflightDiscordMessage(
     threadOwnerId,
     channelConfig,
     guildInfo,
+    accountRequireMention: params.discordConfig?.requireMention,
   });
   const shouldRequireMention = resolvePreflightMentionRequirement({
     shouldRequireMention: shouldRequireMentionByConfig,

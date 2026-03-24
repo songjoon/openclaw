@@ -481,6 +481,8 @@ export function resolveDiscordShouldRequireMention(params: {
   guildInfo?: DiscordGuildEntryResolved | null;
   /** Pass pre-computed value to avoid redundant checks. */
   isAutoThreadOwnedByBot?: boolean;
+  /** Account-level default; falls back when guild/channel config is not set. */
+  accountRequireMention?: boolean;
 }): boolean {
   if (!params.isGuildMessage) {
     return false;
@@ -490,7 +492,12 @@ export function resolveDiscordShouldRequireMention(params: {
   if (isBotThread) {
     return false;
   }
-  return params.channelConfig?.requireMention ?? params.guildInfo?.requireMention ?? true;
+  return (
+    params.channelConfig?.requireMention ??
+    params.guildInfo?.requireMention ??
+    params.accountRequireMention ??
+    true
+  );
 }
 
 export function isDiscordAutoThreadOwnedByBot(params: {
